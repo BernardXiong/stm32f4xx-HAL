@@ -18,7 +18,6 @@ config $PKGS_DIR
 source "$RTT_DIR/Kconfig"
 source "$PKGS_DIR/Kconfig"
 
-
 choice
     prompt "Device type"
     default STM32F401RC
@@ -284,6 +283,12 @@ choice
         bool "STM32F423ZH"
 endchoice
 
+config STM32F4_BOARD
+    select ARCH_ARM_CORTEX_M4
+    select PKG_USING_STM32F4_HAL
+    select PKG_USING_STM32F4_DRIVERS
+    default y
+
 config RT_USING_HSI
     bool "Using HSI as clock source"
     default n
@@ -356,4 +361,5 @@ menu "USB Host Config"
         bool "using vbus check pin"
         default n
 endmenu
+
 endif
